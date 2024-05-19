@@ -11,7 +11,7 @@ const PersonList = () => {
 
   const handlePersonSubmit = (
     values: Record<string, any>,
-    e: React.FormEvent<HTMLFormElement> | undefined
+    _e: React.FormEvent<HTMLFormElement> | undefined
   ) => {
     dispatch({ type: 'ADD_PERSON', payload: values['name'] });
 

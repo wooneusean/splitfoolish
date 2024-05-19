@@ -34,7 +34,7 @@ const ItemList = () => {
 
   const handleItemSubmit = (
     values: Record<string, any>,
-    e: React.FormEvent<HTMLFormElement> | undefined
+    _e: React.FormEvent<HTMLFormElement> | undefined
   ) => {
     const participants = state.people.filter((p) => values['participants'].includes(p.name));
     const payer = state.people.find((p) => p.name === values['payer']);

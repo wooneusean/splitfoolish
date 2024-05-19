@@ -10,7 +10,7 @@ import { AppContext } from '../context/AppContext/AppContext';
 import { IOwing } from '../interfaces/app-reducer';
 
 const SplitPage = () => {
-  const { state, dispatch } = useContext(AppContext);
+  const { state } = useContext(AppContext);
   const [owings, setOwings] = useImmer(state.owings);
   const singlePayerForm = useForm({ mode: 'uncontrolled' });
 
@@ -94,7 +94,7 @@ const SplitPage = () => {
 
   const handleSinglePayerSubmit = (
     values: Record<string, any>,
-    e: FormEvent<HTMLFormElement> | undefined
+    _e: FormEvent<HTMLFormElement> | undefined
   ) => {
     const distributor = values['person'];
     if (distributor === null) {
@@ -129,7 +129,7 @@ const SplitPage = () => {
       .then(() => {
         notifications.show({ message: 'Owings copied to clipboard as CSV' });
       })
-      .catch((err) => {
+      .catch((_err) => {
         notifications.show({ message: 'Failed to copy owings to clipboard as CSV:' });
       });
   }

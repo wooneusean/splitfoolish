@@ -9,7 +9,7 @@ import SplitPage from './components/SplitPage';
 import { AppContext } from './context/AppContext/AppContext';
 
 function App() {
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState<string | null>('0');
 
   useEffect(() => {
