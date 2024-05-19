@@ -5,4 +5,8 @@ interface AppContextValue {
   state: AppReducerState;
   dispatch: React.Dispatch<AppReducerAction>;
 }
-export const AppContext = createContext<AppContextValue>({ state: () => {}, dispatch: () => {} });
+
+export const AppContext = createContext<AppContextValue>({
+  state: { items: [], people: [], owings: [] } as AppReducerState,
+  dispatch: () => {},
+});

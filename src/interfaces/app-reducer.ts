@@ -1,6 +1,6 @@
 export interface IOwing {
-  debtor: IPerson;
-  creditor: IPerson;
+  payer: IPerson;
+  payee: IPerson;
   amount: number;
 }
 
@@ -12,7 +12,6 @@ export interface IItem {
   name: string;
   cost: number;
   payer: IPerson;
-  strategy: 'equally' | 'owingPayer' | 'payerCovers';
   participants: IPerson[];
 }
 

@@ -14,13 +14,18 @@
     "@mantine/form": "^7.9.1",
     "@mantine/hooks": "^7.9.1",
     "@mantine/modals": "^7.9.1",
+    "@mantine/notifications": "^7.9.2",
     "@tabler/icons-react": "^3.4.0",
     "immer": "^10.1.1",
+    "lodash": "^4.17.21",
+    "mathjs": "^12.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "use-immer": "^0.9.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.4",
+    "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

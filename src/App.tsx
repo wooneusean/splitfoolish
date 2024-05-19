@@ -1,62 +1,20 @@
-import {
-  ActionIcon,
-  Button,
-  MultiSelect,
-  NumberInput,
-  Select,
-  Table,
-  Tabs,
-  TextInput,
-} from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { FormEventHandler, act, useContext, useRef, useState } from 'react';
+import { Button, Tabs } from '@mantine/core';
+import { IconArrowsSplit, IconListDetails, IconUser } from '@tabler/icons-react';
+import { useContext, useEffect, useState } from 'react';
 import './App.css';
-import { AppContext } from './context/AppContext/AppContext';
-import { IItem, IOwing } from './interfaces/app-reducer';
-import { IconArrowsSplit, IconListDetails, IconPlus, IconUser } from '@tabler/icons-react';
-import PersonList from './components/PersonList';
-import ItemList from './components/ItemList';
 import ErrorBoundary from './components/ErrorBoundary';
+import ItemList from './components/ItemList';
+import PersonList from './components/PersonList';
+import SplitPage from './components/SplitPage';
+import { AppContext } from './context/AppContext/AppContext';
 
-/**
- * People modal -> store people
- * Draft settlement -> print settlement
- * Main list for costs
- */
 function App() {
   const { state, dispatch } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState<string | null>('0');
 
-  const handleSplit = () => {
-    dispatch({
-      type: 'SPLIT',
-      payload: null,
-    });
-  };
-
-  const nextTab = () => {
-    if (activeTab === null) return;
-
-    const nextTab = parseInt(activeTab) + 1;
-
-    if (nextTab > 2) {
-      return;
-    }
-
-    setActiveTab(nextTab.toString());
-  };
-
-  const prevTab = () => {
-    if (activeTab === null) return;
-
-    const nextTab = parseInt(activeTab) - 1;
-
-    if (nextTab < 0) {
-      return;
-    }
-
-    setActiveTab(nextTab.toString());
-  };
+  useEffect(() => {
+    dispatch({ type: 'SETTLE', payload: null });
+  }, []);
 
   return (
     <div className="max-w-screen-sm m-auto bg-white min-h-screen">
@@ -107,32 +65,24 @@ function App() {
           value="2"
           className="p-4"
         >
-          {/* Somehow need to fix this part */}
           <ErrorBoundary fallback={<div>An error occured.</div>}>
-            <Button onClick={() => handleSplit()}>Split</Button>
-            <ul>
-              {state.owings.map((o) => {
-                if (o.creditor.name === o.debtor.name) {
-                  return (
-                    <li>
-                      {o.debtor.name} pays RM {o.amount}
-                    </li>
-                  );
-                }
-
-                return (
-                  <li>
-                    {o.debtor.name} owes RM {o.amount} to {o.creditor.name}
-                  </li>
-                );
-              })}
-            </ul>
+            <SplitPage />
           </ErrorBoundary>
         </Tabs.Panel>
       </Tabs>
-      <div className="flex w-full justify-between">
-        <Button onClick={() => prevTab()}>Prev</Button>
-        <Button onClick={() => nextTab()}>Next</Button>
+      <div className="flex gap-2 items-center justify-center">
+        <div className="text-xs">Are you testing?</div>
+        <Button
+          className="p-0"
+          size="compact-xs"
+          radius="xs"
+          variant="transparent"
+          onClick={() => {
+            dispatch({ type: 'LOAD_TEST_DATA', payload: null });
+          }}
+        >
+          Load test data.
+        </Button>
       </div>
     </div>
   );
