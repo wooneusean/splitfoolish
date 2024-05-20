@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconMinus } from '@tabler/icons-react';
+import { IconMinus, IconTrashX } from '@tabler/icons-react';
 import { evaluate } from 'mathjs';
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext/AppContext';
@@ -68,6 +68,7 @@ const ItemList = () => {
       >
         Add Items
       </Title>
+
       <form
         onSubmit={itemForm.onSubmit(handleItemSubmit)}
         className="grid grid-cols-2 gap-2"
@@ -106,12 +107,22 @@ const ItemList = () => {
         </Button>
       </form>
 
-      <Title
-        order={2}
-        className="mb-4 text-gray-800 mt-6"
-      >
-        Item List
-      </Title>
+      <div className="flex justify-between items-baseline">
+        <Title
+          order={2}
+          className="mb-4 text-gray-800 mt-6"
+        >
+          Item List
+        </Title>
+        <Tooltip label="Clear List">
+          <ActionIcon
+            color="red"
+            onClick={() => dispatch({ type: 'CLEAR_ITEMS', payload: null })}
+          >
+            <IconTrashX />
+          </ActionIcon>
+        </Tooltip>
+      </div>
       <Table className="my-4">
         <Table.Thead>
           <Table.Tr>

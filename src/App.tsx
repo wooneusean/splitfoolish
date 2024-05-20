@@ -13,6 +13,7 @@ function App() {
   const [activeTab, setActiveTab] = useState<string | null>('0');
 
   useEffect(() => {
+    dispatch({ type: 'LOAD_FROM_LOCALSTORAGE', payload: null });
     dispatch({ type: 'SETTLE', payload: null });
   }, []);
 

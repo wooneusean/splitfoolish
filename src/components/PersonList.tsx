@@ -1,6 +1,6 @@
-import { ActionIcon, TextInput, Title } from '@mantine/core';
+import { ActionIcon, Button, Text, TextInput, Title, Tooltip } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { IconMinus, IconPlus } from '@tabler/icons-react';
+import { IconClearAll, IconMinus, IconPlus, IconTrashX } from '@tabler/icons-react';
 import React, { useContext, useRef } from 'react';
 import { AppContext } from '../context/AppContext/AppContext';
 
@@ -24,12 +24,22 @@ const PersonList = () => {
 
   return (
     <>
-      <Title
-        order={2}
-        className="mb-4 text-gray-800"
-      >
-        Add People
-      </Title>
+      <div className="flex justify-between items-baseline">
+        <Title
+          order={2}
+          className="mb-4 text-gray-800"
+        >
+          Add People
+        </Title>
+        <Tooltip label="Clear List">
+          <ActionIcon
+            color="red"
+            onClick={() => dispatch({ type: 'CLEAR_PEOPLE', payload: null })}
+          >
+            <IconTrashX />
+          </ActionIcon>
+        </Tooltip>
+      </div>
       <div className="flex flex-col gap-2">
         {state.people.map((p) => (
           <TextInput
