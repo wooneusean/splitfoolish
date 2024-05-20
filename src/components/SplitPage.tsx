@@ -15,6 +15,8 @@ const SplitPage = () => {
   const singlePayerForm = useForm({ mode: 'uncontrolled' });
 
   const optimizeOwings = (unoptimizedOwings: IOwing[]): IOwing[] => {
+    if (unoptimizedOwings == null || unoptimizedOwings.length === 0) return unoptimizedOwings;
+
     const newOwings = produce(unoptimizedOwings, (draft) => {
       // Remove pay-to-self
       draft.splice(0, draft.length, ...draft.filter((o) => o.payee.name !== o.payer.name));
@@ -87,8 +89,6 @@ const SplitPage = () => {
   };
 
   useEffect(() => {
-    if (state.owings == null || state.owings.length === 0) return;
-
     setOwings(optimizeOwings(state.owings));
   }, [state.owings]);
 

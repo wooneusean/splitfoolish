@@ -13,6 +13,7 @@ function App() {
   const [activeTab, setActiveTab] = useState<string | null>('0');
 
   useEffect(() => {
+    dispatch({ type: 'LOAD_FROM_LOCALSTORAGE', payload: null });
     dispatch({ type: 'SETTLE', payload: null });
   }, []);
 
@@ -22,6 +23,7 @@ function App() {
         value={activeTab}
         onChange={setActiveTab}
       >
+        swagawgasg
         <Tabs.List>
           <Tabs.Tab
             value="0"
@@ -42,7 +44,6 @@ function App() {
             Split
           </Tabs.Tab>
         </Tabs.List>
-
         <Tabs.Panel
           value="0"
           className="p-4"
@@ -51,7 +52,6 @@ function App() {
             <PersonList />
           </ErrorBoundary>
         </Tabs.Panel>
-
         <Tabs.Panel
           value="1"
           className="p-4"
@@ -60,7 +60,6 @@ function App() {
             <ItemList />
           </ErrorBoundary>
         </Tabs.Panel>
-
         <Tabs.Panel
           value="2"
           className="p-4"
